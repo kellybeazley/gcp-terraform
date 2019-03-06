@@ -18,7 +18,7 @@ resource "google_compute_instance" "default" {
  }
 
 // Install nginx
- metadata_startup_script = "sudo apt-get update; sudo apt-get install nginx; service nginx start"
+ metadata_startup_script = "sudo apt-get update; sudo apt-get install -y nginx; service nginx start"
 
  network_interface {
    network = "default"
