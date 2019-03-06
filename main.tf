@@ -2,23 +2,23 @@
 provider "google" {
   credentials = "${file("kelly-gcp-sa.json")}"
   project     = "kelly-gcp"
-  region      = "europe-west1"
+  region      = "europe-west2"
 }
 
 // A single Google Cloud Engine instance
 resource "google_compute_instance" "default" {
  name         = "kelly-cats"
- machine_type = "f1-micro"
- zone = "europe-west1-b"
-
+ machine_type = "g1-small"
+ zone = "europe-west2-a"
+ allow_stopping_for_update = "true"
  boot_disk {
    initialize_params {
      image = "ubuntu-os-cloud/ubuntu-1804-lts"
    }
  }
 
-// Make sure flask is installed on all new instances for later steps
- metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install flask"
+// Install nginx
+ metadata_startup_script = "sudo apt-get update; sudo apt-get install nginx; service start nginx"
 
  network_interface {
    network = "default"
