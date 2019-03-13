@@ -1,6 +1,6 @@
 // Configure GCP Provider
 provider "google" {
-  credentials = "${file("../kelly-gcp-sa.json")}"
+  credentials = "${file("../path to your credentials.json")}"
   project     = "kelly-gcp"
   region      = "europe-west2"
 }
