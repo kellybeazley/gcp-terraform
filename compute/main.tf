@@ -18,24 +18,23 @@ resource "google_compute_instance" "default" {
    }
  }
  metadata {
-  ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+  ssh-keys = "root:${file("path to your public key")}"
 }
 
 connection {
   type = "ssh"
   user = "root"
-  private_key = "${file("~/.ssh/id_rsa")}"
+  private_key = "${file("path to your private key")}"
   }
 
  provisioner "file" {
-    source = "/Users/kelly.beazley/Documents/cats"
+    source = "cats/"
     destination = "/tmp/cats"
 }
 
-provisioner "file" {
-   source = "index.html"
-   destination = "/var/www/html"
- }
+// provisioner "file" {
+//   source = "index.html"
+//   destination = "/var/www/html"
 
 
 // Install nginx
