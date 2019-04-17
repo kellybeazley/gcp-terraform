@@ -13,3 +13,4 @@ region = "europe-west6"
 gcp_credentials_json = "/home/ansible/credentials/gcp/shared-services-229613-f4cd09000c70.json"
 
 zone = "europe-west6-a"
+
