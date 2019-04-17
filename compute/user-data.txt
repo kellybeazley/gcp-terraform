@@ -1,0 +1,21 @@
+#cloud-config
+
+users:
+  - default
+  - name: ansible
+    lock_passwd: false
+    sudo: ALL=(ALL) NOPASSWD:ALL 
+    ssh-authorized-keys:
+     - ${ssh_key}
+
+apt:
+    proxy: "${proxy}"
+    http_proxy: "${proxy}"
+    https_proxy: "${proxy}"
+
+package_upgrade: true
+package_update: true
+packages:
+  - python
+
+final_message: "cloud-init finished"
