@@ -3,8 +3,7 @@ resource "google_container_cluster" "primary" {
   location                 = var.location
   name                     = var.cluster_name
   remove_default_node_pool = "true"
-  initial_node_count       = var.node_count
-
+  
   master_auth {
     username = var.username
     password = var.password
