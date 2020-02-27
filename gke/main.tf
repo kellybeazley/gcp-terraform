@@ -30,3 +30,25 @@ resource "google_container_cluster" "primary" {
       update = "40m"
     }
   }
+
+  resource "google_container_node_pool" "nodes" {
+  name       = "my-node-pool"
+  location   = "europe-west4"
+  cluster    = google_container_cluster.primary.name
+  node_count = ${var.node_count}
+
+  node_config {
+    preemptible  = true
+    machine_type = "type"
+
+    metadata = {
+      disable-legacy-endpoints = "true"
+    }
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+  }
+}
+
